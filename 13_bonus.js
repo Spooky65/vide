@@ -24,8 +24,14 @@ ex: la pomme est rouge et la banane est jaune
 
  */
 
-const countWords = (sentence) => {
+const countWords = (sentence) => { 
+  const words = sentence.split(' ');
+  return words.reduce((acc, word) => {
+    acc[word] = (acc[word] || 0) + 1;
+    return acc;
+  }, {});
 };
+
 console.log(countWords("la pomme est rouge et la banane est jaune"));
 
 /**
@@ -51,7 +57,8 @@ exemple:
 
 */
 
-const sortObjectByValue = (obj) => {
-};
+const sortObjectByValue = (obj) => Object.fromEntries(Object.entries(obj).sort((a, b) => a[1] - b[1]));
+
+console.log(sortObjectByValue({pommes: 3, bananes: 1, cerises: 8}));
 
 module.exports = {countWords, sortObjectByValue};
